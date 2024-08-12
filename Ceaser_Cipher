@@ -1,46 +1,69 @@
 #include<stdio.h> 
 #include<string.h>
+
 int main() {
-int i, key;
-char s[1000], c;
-printf("Enter a plaintext to encrypt:\n");
-fgets(s, sizeof(s), stdin);
-printf("Enter key:\n");
-scanf("%d", &key);
-int n = strlen(s);
-for (i = 0; i < n; i++) {
-c = s[i];
-if (c >= 'a' && c <= 'z') {
-c = c + key;
-if (c > 'z') {
-c = c - 'z' + 'a' - 1;
-}
-s[i] = c;
-} else if (c >= 'A' && c <= 'Z') {
-c = c + key;
-if (c > 'Z') {
-c = c - 'Z' + 'A' - 1;
-}
-s[i] = c;
-}
-}
-printf("Encrypted message: %s\n", s);
-for (i = 0; i < n; i++) {
-c = s[i];
-if (c >= 'a' && c <= 'z') {
-c = c - key;
-if (c < 'a') {
-c = c + 'z' - 'a' + 1;
-}
-s[i] = c;
-} else if (c >= 'A' && c <= 'Z') {
-c = c - key;
-if (c < 'A') {
-c = c + 'Z' - 'A' + 1;
-}
-s[i] = c;
-}
-}
-printf("Decrypted message: %s\n", s);
-return 0;
+    int i, key;
+    char s[1000], c;
+
+    // Input plaintext
+    printf("Enter a plaintext to encrypt:\n");
+    fgets(s, sizeof(s), stdin);
+
+    // Input key
+    printf("Enter key:\n");
+    scanf("%d", &key);
+
+    int n = strlen(s);
+
+    // Encrypt the plaintext
+    for (i = 0; i < n; i++) {
+        c = s[i];
+
+        // Encrypt lowercase letters
+        if (c >= 'a' && c <= 'z') {
+            c = c + key;
+            if (c > 'z') {
+                c = c - 'z' + 'a' - 1;
+            }
+            s[i] = c;
+        } 
+        // Encrypt uppercase letters
+        else if (c >= 'A' && c <= 'Z') {
+            c = c + key;
+            if (c > 'Z') {
+                c = c - 'Z' + 'A' - 1;
+            }
+            s[i] = c;
+        }
+    }
+
+    // Output encrypted message
+    printf("Encrypted message: %s\n", s);
+
+    // Decrypt the ciphertext
+    for (i = 0; i < n; i++) {
+        c = s[i];
+
+        // Decrypt lowercase letters
+        if (c >= 'a' && c <= 'z') {
+            c = c - key;
+            if (c < 'a') {
+                c = c + 'z' - 'a' + 1;
+            }
+            s[i] = c;
+        } 
+        // Decrypt uppercase letters
+        else if (c >= 'A' && c <= 'Z') {
+            c = c - key;
+            if (c < 'A') {
+                c = c + 'Z' - 'A' + 1;
+            }
+            s[i] = c;
+        }
+    }
+
+    // Output decrypted message
+    printf("Decrypted message: %s\n", s);
+
+    return 0;
 }
