@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include<math.h>
+long long int power(long long int a, long long int b, long long int P) {
+    if (b == 1)
+        return a;
+    else
+        return (((long long int)pow(a, b)) % P);
+}
+
+int main() {
+    long long int P, G, x, a, y, b, ka, kb;
+
+    printf("Enter the value of P: ");
+    scanf("%lld", &P);
+    printf("Enter the value of G: ");
+    scanf("%lld", &G);
+    printf("Enter the private key a for Client:");
+    scanf("%lld", &a);
+    printf("Enter the private key b for Server:");
+    scanf("%lld", &b);
+
+    printf("\nThe value of P: %lld\n", P);
+    printf("The value of G: %lld\n\n", G);
+    printf("The private key a for Client: %lld\n", a);
+
+    x = power(G, a, P); // gets the generated key
+    printf("The private key b for Server: %lld\n\n", b);
+    y = power(G, b, P); // gets the generated key
+    ka = power(y, a, P); // Secret key for Alice
+    kb = power(x, b, P); // Secret key for Bob
+    printf("Secret key for Client: %lld\n", ka);
+    printf("Secret Key for Server: %lld\n", kb);
+
+    return 0;
+}
+
