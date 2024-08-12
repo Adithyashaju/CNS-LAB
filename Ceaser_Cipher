@@ -1,10 +1,8 @@
 #include<stdio.h> 
 #include<string.h>
-
 int main() {
     int i, key;
     char s[1000], c;
-
     // Input plaintext
     printf("Enter a plaintext to encrypt:\n");
     fgets(s, sizeof(s), stdin);
